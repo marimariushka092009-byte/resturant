@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reserve Table - Deluxe X</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#0a0a0a;
+--card:rgba(255,255,255,.06);
+--line:rgba(255,255,255,.08);
+--text:#f6f2e9;
+--muted:#b7ae9a;
+--gold:#d4a85f;
+--gold2:#f0cf96;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:Inter,sans-serif;
+background:radial-gradient(circle at 20% 10%,rgba(212,168,95,.12),transparent 40%),var(--bg);
+color:var(--text);
+min-height:100vh;
+}
+header{
+position:sticky;
+top:0;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 6vw;
+background:rgba(10,10,10,.7);
+backdrop-filter:blur(14px);
+border-bottom:1px solid var(--line);
+}
+.logo{
+font-family:Playfair Display,serif;
+font-size:26px;
+}
+nav a{
+color:var(--text);
+text-decoration:none;
+margin-left:18px;
+font-size:14px;
+opacity:.8;
+}
+nav a:hover{color:var(--gold)}
+.container{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+padding:80px 6vw;
+align-items:center;
+}
+.hero{
+}
+.hero h1{
+font-family:Playfair Display,serif;
+font-size:clamp(2.5rem,5vw,4rem);
+margin-bottom:14px;
+}
+.hero p{
+color:var(--muted);
+line-height:1.7;
+}
+.form{
+background:var(--card);
+border:1px solid var(--line);
+border-radius:28px;
+padding:30px;
+backdrop-filter:blur(12px);
+}
+.input{
+width:100%;
+padding:14px;
+margin-bottom:14px;
+border-radius:14px;
+border:1px solid var(--line);
+background:#0d0d0d;
+color:#fff;
+outline:none;
+}
+.row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+}
+button{
+width:100%;
+padding:14px;
+border:none;
+border-radius:999px;
+cursor:pointer;
+font-weight:600;
+background:linear-gradient(135deg,var(--gold),var(--gold2));
+color:#111;
+transition:.3s;
+}
+button:hover{
+transform:translateY(-3px);
+}
+.info{
+margin-top:20px;
+color:var(--muted);
+font-size:13px;
+line-height:1.6;
+}
+.success{
+display:none;
+margin-top:15px;
+padding:12px;
+border:1px solid rgba(212,168,95,.4);
+border-radius:12px;
+color:var(--gold);
+font-size:14px;
+}
+@media(max-width:900px){
+.container{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">Deluxe X</div>
+<nav>
+<a href="index.html">Home</a>
+<a href="menu.html">Menu</a>
+<a href="contact.html">Contact</a>
+</nav>
+</header>
+
+<section class="container">
+
+<div class="hero">
+<h1>Reserve Your Experience</h1>
+<p>Book your table and enjoy a premium dining experience crafted with elegance, taste, and atmosphere designed for unforgettable moments.</p>
+</div>
+
+<div class="form">
+<input class="input" type="text" placeholder="Full Name">
+<div class="row">
+<input class="input" type="date">
+<input class="input" type="time">
+</div>
+<div class="row">
+<input class="input" type="number" placeholder="Guests">
+<input class="input" type="tel" placeholder="Phone">
+</div>
+<input class="input" type="email" placeholder="Email">
+<button onclick="reserve()">Book a Table</button>
+<div class="success" id="success">Reservation confirmed. We will contact you shortly.</div>
+
+<div class="info">
+By booking you agree to our terms. Reservations are held for 15 minutes after the selected time.
+</div>
+
+</div>
+
+</section>
+
+<script>
+function reserve(){
+document.getElementById('success').style.display='block';
+}
+</script>
+
+</body>
+</html>

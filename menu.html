@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deluxe X Menu</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#0a0a0a;
+--card:rgba(255,255,255,.06);
+--line:rgba(255,255,255,.08);
+--text:#f6f2e9;
+--muted:#b7ae9a;
+--gold:#d4a85f;
+--gold2:#f0cf96;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:Inter,sans-serif;
+background:radial-gradient(circle at 20% 10%,rgba(212,168,95,.12),transparent 40%),var(--bg);
+color:var(--text);
+}
+header{
+position:sticky;
+top:0;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 6vw;
+background:rgba(10,10,10,.7);
+backdrop-filter:blur(14px);
+border-bottom:1px solid var(--line);
+z-index:1000;
+}
+.logo{
+font-family:Playfair Display,serif;
+font-size:26px;
+}
+nav a{
+color:var(--text);
+text-decoration:none;
+margin-left:18px;
+font-size:14px;
+opacity:.8;
+}
+nav a:hover{color:var(--gold)}
+.hero{
+text-align:center;
+padding:90px 20px 40px;
+}
+.hero h1{
+font-family:Playfair Display,serif;
+font-size:clamp(2.5rem,6vw,5rem);
+}
+.hero p{
+color:var(--muted);
+margin-top:12px;
+}
+.filters{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:12px;
+margin:40px 0;
+}
+.filter-btn{
+padding:10px 18px;
+border-radius:999px;
+border:1px solid var(--line);
+background:transparent;
+color:var(--text);
+cursor:pointer;
+transition:.3s;
+font-size:14px;
+}
+.filter-btn.active,
+.filter-btn:hover{
+background:linear-gradient(135deg,var(--gold),var(--gold2));
+color:#111;
+border-color:transparent;
+}
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:22px;
+padding:0 6vw 80px;
+}
+.card{
+background:var(--card);
+border:1px solid var(--line);
+border-radius:24px;
+overflow:hidden;
+transition:.4s;
+transform:translateY(0);
+}
+.card:hover{
+transform:translateY(-10px);
+border-color:rgba(212,168,95,.35);
+}
+.card img{
+width:100%;
+height:200px;
+object-fit:cover;
+}
+.content{
+padding:18px;
+}
+.content h3{
+font-family:Playfair Display,serif;
+margin-bottom:6px;
+}
+.content p{
+color:var(--muted);
+font-size:14px;
+line-height:1.6;
+}
+.price{
+margin-top:10px;
+color:var(--gold);
+font-weight:700;
+}
+.hide{display:none}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">Deluxe X</div>
+<nav>
+<a href="index.html">Home</a>
+<a href="reserve.html">Reserve</a>
+<a href="contact.html">Contact</a>
+</nav>
+</header>
+
+<section class="hero">
+<h1>Our Menu</h1>
+<p>Curated dishes crafted with premium ingredients and culinary precision.</p>
+</section>
+
+<div class="filters">
+<button class="filter-btn active" onclick="filter('all',this)">All</button>
+<button class="filter-btn" onclick="filter('meat',this)">Meat</button>
+<button class="filter-btn" onclick="filter('fish',this)">Fish</button>
+<button class="filter-btn" onclick="filter('dessert',this)">Dessert</button>
+<button class="filter-btn" onclick="filter('drink',this)">Drinks</button>
+</div>
+
+<section class="grid">
+
+<div class="card item meat">
+<img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092">
+<div class="content">
+<h3>Truffle Steak</h3>
+<p>Premium beef with truffle butter.</p>
+<div class="price">$42</div>
+</div>
+</div>
+
+<div class="card item fish">
+<img src="https://images.unsplash.com/photo-1559847844-5315695dadae">
+<div class="content">
+<h3>Grilled Salmon</h3>
+<p>Fresh salmon with citrus glaze.</p>
+<div class="price">$34</div>
+</div>
+</div>
+
+<div class="card item dessert">
+<img src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f">
+<div class="content">
+<h3>Golden Cake</h3>
+<p>Vanilla cream & caramel layers.</p>
+<div class="price">$16</div>
+</div>
+</div>
+
+<div class="card item drink">
+<img src="https://images.unsplash.com/photo-1514361892635-cebb5b6c7e9e">
+<div class="content">
+<h3>Signature Cocktail</h3>
+<p>Fresh citrus mix with premium spirits.</p>
+<div class="price">$12</div>
+</div>
+</div>
+
+</section>
+
+<script>
+function filter(type,btn){
+let items=document.querySelectorAll('.item');
+document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+btn.classList.add('active');
+
+items.forEach(el=>{
+if(type==='all'){
+el.classList.remove('hide');
+}else{
+el.classList.toggle('hide',!el.classList.contains(type));
+}
+});
+}
+</script>
+
+</body>
+</html>

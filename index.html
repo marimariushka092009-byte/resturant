@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deluxe X</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#080808;
+--bg2:#111111;
+--card:rgba(255,255,255,.06);
+--line:rgba(255,255,255,.08);
+--text:#f6f2e9;
+--muted:#b7ae9a;
+--gold:#d4a85f;
+--gold2:#f0cf96;
+--shadow:0 20px 60px rgba(0,0,0,.45);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+font-family:Inter,sans-serif;
+background:
+radial-gradient(circle at 20% 20%,rgba(212,168,95,.12),transparent 35%),
+radial-gradient(circle at 80% 30%,rgba(240,207,150,.08),transparent 35%),
+linear-gradient(180deg,#060606,#0d0d0d 40%,#090909);
+color:var(--text);
+overflow-x:hidden;
+}
+body:before{
+content:"";
+position:fixed;
+inset:0;
+background-image:
+linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),
+linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
+background-size:30px 30px;
+pointer-events:none;
+opacity:.25;
+z-index:-1;
+}
+.progress{
+position:fixed;
+top:0;
+left:0;
+height:3px;
+width:0;
+background:linear-gradient(90deg,var(--gold),var(--gold2));
+z-index:2000;
+box-shadow:0 0 20px var(--gold);
+}
+header{
+position:fixed;
+top:20px;
+left:50%;
+transform:translateX(-50%);
+width:min(1200px,92%);
+padding:18px 28px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border:1px solid var(--line);
+background:rgba(15,15,15,.45);
+backdrop-filter:blur(18px);
+border-radius:22px;
+z-index:1000;
+box-shadow:var(--shadow);
+}
+.logo{
+font-family:Playfair Display,serif;
+font-size:28px;
+letter-spacing:1px;
+}
+nav{
+display:flex;
+gap:28px;
+align-items:center;
+}
+nav a{
+text-decoration:none;
+color:var(--text);
+font-size:14px;
+opacity:.85;
+transition:.35s;
+}
+nav a:hover{color:var(--gold)}
+.cta{
+padding:13px 24px;
+border:none;
+border-radius:999px;
+cursor:pointer;
+font-weight:600;
+background:linear-gradient(135deg,var(--gold),var(--gold2));
+color:#111;
+box-shadow:0 10px 30px rgba(212,168,95,.35);
+transition:.35s;
+}
+.cta:hover{transform:translateY(-3px) scale(1.03)}
+.hero{
+min-height:100vh;
+display:grid;
+grid-template-columns:1.15fr .85fr;
+align-items:center;
+gap:40px;
+padding:140px 6vw 80px;
+position:relative;
+}
+.hero-copy h5{
+color:var(--gold);
+font-weight:500;
+letter-spacing:3px;
+margin-bottom:18px;
+}
+.hero-copy h1{
+font-family:Playfair Display,serif;
+font-size:clamp(3rem,8vw,7rem);
+line-height:.95;
+margin-bottom:22px;
+}
+.hero-copy p{
+max-width:620px;
+color:var(--muted);
+font-size:18px;
+line-height:1.8;
+margin-bottom:34px;
+}
+.hero-actions{
+display:flex;
+gap:16px;
+flex-wrap:wrap;
+}
+.ghost{
+padding:13px 24px;
+border-radius:999px;
+border:1px solid var(--line);
+background:rgba(255,255,255,.03);
+color:var(--text);
+cursor:pointer;
+}
+.visual{
+position:relative;
+height:680px;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+.glow{
+position:absolute;
+width:460px;
+height:460px;
+border-radius:50%;
+background:radial-gradient(circle,rgba(212,168,95,.28),transparent 65%);
+filter:blur(25px);
+animation:float 6s ease-in-out infinite;
+}
+.plate{
+position:relative;
+width:min(520px,92%);
+aspect-ratio:1;
+border-radius:50%;
+overflow:hidden;
+border:1px solid rgba(255,255,255,.1);
+box-shadow:0 30px 80px rgba(0,0,0,.5);
+animation:float2 7s ease-in-out infinite;
+}
+.plate img{
+width:100%;
+height:100%;
+object-fit:cover;
+transform:scale(1.08);
+}
+.badge{
+position:absolute;
+right:0;
+bottom:70px;
+padding:18px 22px;
+border-radius:22px;
+border:1px solid var(--line);
+background:rgba(255,255,255,.06);
+backdrop-filter:blur(14px);
+box-shadow:var(--shadow);
+}
+.section{
+padding:110px 6vw;
+}
+.heading{
+text-align:center;
+max-width:780px;
+margin:0 auto 60px;
+}
+.heading h2{
+font-family:Playfair Display,serif;
+font-size:clamp(2.2rem,5vw,4rem);
+margin-bottom:14px;
+}
+.heading p{
+color:var(--muted);
+line-height:1.8;
+}
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:28px;
+}
+.card{
+padding:24px;
+border-radius:28px;
+border:1px solid var(--line);
+background:var(--card);
+backdrop-filter:blur(12px);
+transition:.4s;
+}
+.card:hover{
+transform:translateY(-10px);
+box-shadow:var(--shadow);
+border-color:rgba(212,168,95,.35);
+}
+.card img{
+width:100%;
+height:240px;
+object-fit:cover;
+border-radius:22px;
+margin-bottom:18px;
+}
+.card h3{margin-bottom:10px}
+.card p{color:var(--muted);line-height:1.7}
+.price{
+margin-top:16px;
+color:var(--gold);
+font-weight:700;
+}
+.banner{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:30px;
+align-items:center;
+padding:40px;
+border-radius:34px;
+border:1px solid var(--line);
+background:linear-gradient(135deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
+}
+.banner img{
+width:100%;
+height:520px;
+object-fit:cover;
+border-radius:26px;
+}
+.banner h3{
+font-family:Playfair Display,serif;
+font-size:clamp(2rem,4vw,3.6rem);
+margin-bottom:20px;
+}
+.banner p{
+color:var(--muted);
+line-height:1.9;
+margin-bottom:26px;
+}
+.footer{
+padding:40px 6vw 60px;
+text-align:center;
+color:var(--muted);
+}
+.reveal{
+opacity:0;
+transform:translateY(60px);
+transition:1s cubic-bezier(.2,.65,.2,1);
+}
+.reveal.show{
+opacity:1;
+transform:none;
+}
+@keyframes float{
+50%{transform:translateY(-25px)}
+}
+@keyframes float2{
+50%{transform:translateY(18px)}
+}
+@media (max-width:980px){
+nav{display:none}
+.hero,.banner{grid-template-columns:1fr}
+.hero{padding-top:180px}
+.visual{height:auto}
+.badge{right:20px;bottom:20px}
+}
+@media (max-width:640px){
+header{padding:16px 18px}
+.hero-copy p{font-size:16px}
+.section{padding:90px 22px}
+.banner{padding:22px}
+.banner img{height:320px}
+}
+</style>
+</head>
+<body>
+
+<div class="progress"></div>
+
+<header>
+<div class="logo">Deluxe X</div>
+<nav>
+<a href="menu.html">Menu</a>
+<a href="#story">Story</a>
+<a href="#signature">Signature</a>
+<a href="reserve.html">Reserve</a>
+<a href="reserve.html"><button class="cta">Book Table</button></a>
+</nav>
+</header>
+
+<section class="hero">
+<div class="hero-copy reveal">
+<h5>MICHELIN INSPIRED DINING</h5>
+<h1>Where Taste Meets Art</h1>
+<p>Experience elevated cuisine, cinematic atmosphere, and handcrafted flavors built for unforgettable nights and refined moments.</p>
+<div class="hero-actions">
+<a href="reserve.html"><button class="cta">Reserve Experience</button></a>
+<a href="menu.html"><button class="ghost">Explore Menu</button></a>
+</div>
+</div>
+<div class="visual reveal">
+<div class="glow"></div>
+<div class="plate">
+<img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80" alt="">
+</div>
+<div class="badge">Premium Dining • Since 1998</div>
+</div>
+</section>
+
+<section class="section" id="menu">
+<div class="heading reveal">
+<h2>Signature Plates</h2>
+<p>Curated dishes crafted with precision, seasonal ingredients, and modern culinary elegance.</p>
+</div>
+<div class="grid">
+<div class="card reveal">
+<img src="https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=1200&q=80" alt="">
+<h3>Truffle Steak</h3>
+<p>Prime cut with black truffle butter and slow-roasted vegetables.</p>
+<div class="price">$42</div>
+</div>
+<div class="card reveal">
+<img src="https://images.unsplash.com/photo-1563379091339-03246963d29a?auto=format&fit=crop&w=1200&q=80" alt="">
+<h3>Ocean Fire</h3>
+<p>Fresh seafood layered with citrus glaze and aromatic herbs.</p>
+<div class="price">$36</div>
+</div>
+<div class="card reveal">
+<img src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1200&q=80" alt="">
+<h3>Golden Dessert</h3>
+<p>Luxury pastry infused with vanilla cream and warm caramel notes.</p>
+<div class="price">$18</div>
+</div>
+</div>
+</section>
+
+<section class="section" id="story">
+<div class="banner reveal">
+<img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80" alt="">
+<div>
+<h3>Crafted For Memorable Evenings</h3>
+<p>Every detail is designed around sensory experience — from architecture and lighting to flavor, plating, and service rhythm that feels effortless and luxurious.</p>
+<button class="cta">Discover More</button>
+</div>
+</div>
+</section>
+
+<section class="section" id="signature">
+<div class="heading reveal">
+<h2>Luxury Atmosphere</h2>
+<p>Minimal elegance, warm light, curated sound, and an unforgettable premium dining environment.</p>
+</div>
+<div class="grid">
+<div class="card reveal"><h3>Private Events</h3><p>Exclusive curated dining for special nights and private experiences.</p></div>
+<div class="card reveal"><h3>Chef Selection</h3><p>Seasonal tasting menus inspired by global fine cuisine.</p></div>
+<div class="card reveal"><h3>Wine Experience</h3><p>Hand-selected pairings to complement every plate beautifully.</p></div>
+</div>
+</section>
+
+<footer class="footer" id="reserve">
+© 2026 Deluxe X — Premium Restaurant Experience
+</footer>
+
+<script>
+const reveals=document.querySelectorAll('.reveal');
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting) entry.target.classList.add('show');
+});
+},{threshold:.15});
+reveals.forEach(el=>observer.observe(el));
+
+const progress=document.querySelector('.progress');
+window.addEventListener('scroll',()=>{
+const h=document.documentElement.scrollHeight-window.innerHeight;
+const sc=(window.scrollY/h)*100;
+progress.style.width=sc+'%';
+});
+</script>
+
+</body>
+</html>
